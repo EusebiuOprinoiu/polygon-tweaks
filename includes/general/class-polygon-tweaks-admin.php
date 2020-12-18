@@ -49,9 +49,14 @@ class Polygon_Tweaks_Admin {
 	 * @return array        New available image sizes.
 	 */
 	public function remove_image_sizes( $sizes ) {
-		unset( $sizes['medium_large'] );
-		unset( $sizes['1536x1536'] );
-		unset( $sizes['2048x2048'] );
+		foreach ( $sizes as $key => $name ) {
+			if ( in_array( $name, array( 'medium_large', '1536x1536', '2048x2048' ), true ) ) {
+				unset( $sizes[ $key ] );
+			}
+		}
+
+		// Make consecutive keys.
+		$sizes = array_values( $sizes );
 
 		return $sizes;
 	}
