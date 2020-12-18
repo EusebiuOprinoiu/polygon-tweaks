@@ -162,7 +162,7 @@ class Polygon_Tweaks_Admin {
 	 */
 	public function force_login_redirect() {
 		if ( is_user_logged_in() ) {
-			if ( ! isset( $_GET['action'] ) ) {
+			if ( ! isset( $_GET['action'] ) ) {    // phpcs:ignore
 				wp_safe_redirect( site_url( '/wp-admin' ) );
 				exit;
 			}
