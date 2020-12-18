@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Polygon Tweaks
- * Plugin URI:        https://polygonthemes.com/plugins/polygon-tweaks
+ * Plugin URI:        https://polygonthemes.com
  * Author:            Polygon Themes
  * Author URI:        https://polygonthemes.com
  * Description:       A simple plugin with tweaks and fixes for a better experience on your WordPress website.
