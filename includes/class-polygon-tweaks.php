@@ -99,6 +99,9 @@ class Polygon_Tweaks {
 		add_filter( 'login_headertext', array( $admin, 'change_login_header_text' ) );
 		add_action( 'login_init', array( $admin, 'force_login_redirect' ) );
 
+		// Register other hooks.
+		add_filter( 'jetpack_just_in_time_msgs', '__return_false' );    // Disable Jetpack nags and upsells.
+
 		// Register db update hooks.
 		add_action( 'plugins_loaded', array( $updates, 'maybe_run_recursive_updates' ) );
 		add_action( 'wpmu_new_blog', array( $updates, 'maybe_run_activation_script' ), 10, 6 );

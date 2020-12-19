@@ -17,3 +17,7 @@ For best results, use the following sizes under Settings > Media:
 
 - skip login page for logged-in users when using iThemes Security and a custom login URL
 - change login logo and target URL
+
+## Other Tweaks
+
+- disable Jetpack and WooCommerce nags and upsells
