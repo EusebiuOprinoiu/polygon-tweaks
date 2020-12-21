@@ -179,7 +179,7 @@ class Polygon_Tweaks_Admin {
 	 * Get the list of unwanted keywords that will be removed from theme and plugin
 	 * row meta and action links.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 * @access protected
 	 * @return array Array with case-insensitive unwanted keywords.
 	 */
@@ -225,7 +225,7 @@ class Polygon_Tweaks_Admin {
 	 * keywords in the list of unwanted keywords.
 	 * This list should contain longer keywords than those in the unwanted list.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 * @access protected
 	 * @return array Array with case-insensitive unwanted keyword exclusions.
 	 */
@@ -251,7 +251,7 @@ class Polygon_Tweaks_Admin {
 	 *
 	 * Remove unwanted links from plugin meta.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 * @param  array  $plugin_meta Array with plugin metadata, including the version, author, author URI, and plugin URI.
 	 * @param  string $plugin_file Path to the plugin file relative to the plugins directory..
 	 * @param  array  $plugin_data Array with plugin data.
