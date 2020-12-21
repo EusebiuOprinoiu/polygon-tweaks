@@ -185,32 +185,22 @@ class Polygon_Tweaks_Admin {
 	 */
 	protected function get_unwanted_keywords() {
 		$unwanted_keywords = array(
-			'Documentation',
-			'Upgrade to Pro',
-			'Go Pro',
-			'Premium',
 			'About',
 			'Donate',
 			'Review',
 			'Support',
-			'Pricing',
-			'Settings',
+			'Premium',
 			'Homepage',
-			'Dashboard',
 			'Changelog',
-			'Change Log',
-			'FAQ',
-			'Docs',
+			'Documentation',
+			'Upgrade to Pro',
+			'View API docs',
 			'Addons',
 			'Add-ons',
 			'Extensions',
 			'Rate plugin',
 			'Rate this plugin',
-			'Help us translate',
-			'Bulk optimization',
-			'Get MonsterInsights Pro',
 			'<span class="dashicons>',
-			'Jetpack',
 			'.jpeg',
 			'.jpg',
 			'.png',
@@ -241,7 +231,9 @@ class Polygon_Tweaks_Admin {
 	 */
 	protected function get_unwanted_keyword_exclusions() {
 		$exclusions = array(
-			'More information about',    // Prevent conflict with 'about'.
+			'View details',
+			'Check for updates',
+			'Visit plugin site',
 		);
 
 		// Make values lowercase.
@@ -267,7 +259,6 @@ class Polygon_Tweaks_Admin {
 	 * @return array               Array with modified plugin metadata.
 	 */
 	public function change_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
-		// Array of unwanted keywords.
 		$unwanted_keywords = $this->get_unwanted_keywords();
 		$exclusions        = $this->get_unwanted_keyword_exclusions();
 		$language          = get_locale();
@@ -312,6 +303,11 @@ class Polygon_Tweaks_Admin {
 				}
 			}
 		}
+
+		// Make consecutive keys.
+		$plugin_meta = array_values( $plugin_meta );
+
+
 
 		return $plugin_meta;
 	}
