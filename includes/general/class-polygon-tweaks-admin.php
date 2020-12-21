@@ -185,6 +185,7 @@ class Polygon_Tweaks_Admin {
 	 */
 	protected function get_unwanted_keywords() {
 		$unwanted_keywords = array(
+			'Docs',
 			'About',
 			'Donate',
 			'Review',
@@ -192,13 +193,14 @@ class Polygon_Tweaks_Admin {
 			'Premium',
 			'Homepage',
 			'Changelog',
+			'Community',
 			'Documentation',
 			'Upgrade to Pro',
-			'View API docs',
 			'Addons',
 			'Add-ons',
 			'Extensions',
-			'Rate plugin',
+			'Leave a review',
+			'Write a review',
 			'Rate this plugin',
 			'<span class="dashicons>',
 			'.jpeg',

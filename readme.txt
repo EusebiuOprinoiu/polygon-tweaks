@@ -43,6 +43,9 @@ No questions added yet! :
 
 ## Changelog
 
+#### Version 1.0.2
+- Better detection for useless links in plugin meta
+
 #### Version 1.0.1
 - Removed useless links from plugin meta (Donate, Leave a review, Upgrade to premium, etc)
 
