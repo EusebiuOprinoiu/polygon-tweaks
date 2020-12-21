@@ -98,6 +98,7 @@ class Polygon_Tweaks {
 		add_filter( 'login_headerurl', array( $admin, 'change_login_header_url' ) );
 		add_filter( 'login_headertext', array( $admin, 'change_login_header_text' ) );
 		add_action( 'login_init', array( $admin, 'force_login_redirect' ) );
+		add_action( 'plugin_row_meta', array( $admin, 'change_plugin_row_meta' ), 999, 4 );
 
 		// Register other hooks.
 		add_filter( 'jetpack_just_in_time_msgs', '__return_false' );    // Disable Jetpack nags and upsells.

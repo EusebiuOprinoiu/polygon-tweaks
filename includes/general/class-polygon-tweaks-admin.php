@@ -168,4 +168,151 @@ class Polygon_Tweaks_Admin {
 			}
 		}
 	}
+
+
+
+
+
+	/**
+	 * Get unwanted keywords.
+	 *
+	 * Get the list of unwanted keywords that will be removed from theme and plugin
+	 * row meta and action links.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @return array Array with case-insensitive unwanted keywords.
+	 */
+	protected function get_unwanted_keywords() {
+		$unwanted_keywords = array(
+			'Documentation',
+			'Upgrade to Pro',
+			'Go Pro',
+			'Premium',
+			'About',
+			'Donate',
+			'Review',
+			'Support',
+			'Pricing',
+			'Settings',
+			'Homepage',
+			'Dashboard',
+			'Changelog',
+			'Change Log',
+			'FAQ',
+			'Docs',
+			'Addons',
+			'Add-ons',
+			'Extensions',
+			'Rate plugin',
+			'Rate this plugin',
+			'Help us translate',
+			'Bulk optimization',
+			'Get MonsterInsights Pro',
+			'<span class="dashicons>',
+			'Jetpack',
+			'.jpeg',
+			'.jpg',
+			'.png',
+			'.svg',
+			'.webp',
+		);
+
+		// Make values lowercase.
+		$unwanted_keywords = array_map( 'strtolower', $unwanted_keywords );
+
+		return $unwanted_keywords;
+	}
+
+
+
+
+
+	/**
+	 * Get unwanted keyword exclusions.
+	 *
+	 * Get the list of keywords that should not be removed even if they contain
+	 * keywords in the list of unwanted keywords.
+	 * This list should contain longer keywords than those in the unwanted list.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @return array Array with case-insensitive unwanted keyword exclusions.
+	 */
+	protected function get_unwanted_keyword_exclusions() {
+		$exclusions = array(
+			'More information about',    // Prevent conflict with 'about'.
+		);
+
+		// Make values lowercase.
+		$exclusions = array_map( 'strtolower', $exclusions );
+
+		return $exclusions;
+	}
+
+
+
+
+
+	/**
+	 * Change plugin row meta.
+	 *
+	 * Remove unwanted links from plugin meta.
+	 *
+	 * @since 1.0.0
+	 * @param  array  $plugin_meta Array with plugin metadata, including the version, author, author URI, and plugin URI.
+	 * @param  string $plugin_file Path to the plugin file relative to the plugins directory..
+	 * @param  array  $plugin_data Array with plugin data.
+	 * @param  string $status      Status filter currently applied to the plugin list.
+	 * @return array               Array with modified plugin metadata.
+	 */
+	public function change_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+		// Array of unwanted keywords.
+		$unwanted_keywords = $this->get_unwanted_keywords();
+		$exclusions        = $this->get_unwanted_keyword_exclusions();
+		$language          = get_locale();
+
+
+
+		// Don't remove links for own plugins.
+		if ( strpos( $plugin_meta[1], 'Eusebiu Oprinoiu' ) || strpos( $plugin_meta[1], 'Polygon Themes' ) ) {
+			return $plugin_meta;
+		}
+
+		// Don't remove links for non-english websites.
+		if ( $language !== 'en_US' ) {
+			return $plugin_meta;
+		}
+
+
+
+		// Remove unwanted links.
+		foreach ( $plugin_meta as $meta_key => $meta_value ) {
+			$meta_value = strtolower( $meta_value );
+
+			// Skip Version and Author keys.
+			if ( $meta_key !== 0 && $meta_key !== 1 ) {
+				foreach ( $unwanted_keywords as $unwanted_keyword ) {
+					// If the unwanted keyword is in meta and no exclusions are found, remove key.
+					if ( strpos( $meta_value, $unwanted_keyword ) ) {
+						$remove = true;
+
+						foreach ( $exclusions as $exclusion ) {
+							if ( strpos( $meta_value, $exclusion ) ) {
+								$remove = false;
+							}
+						}
+
+						// If all conditions are met, remove key and exit loop early.
+						if ( $remove ) {
+							unset( $plugin_meta[ $meta_key ] );
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		return $plugin_meta;
+	}
 }
