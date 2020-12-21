@@ -176,8 +176,8 @@ class Polygon_Tweaks_Admin {
 	/**
 	 * Get unwanted keywords.
 	 *
-	 * Get the list of unwanted keywords that will be removed from theme and plugin
-	 * row meta and action links.
+	 * Get the list of unwanted keywords that will be used to detect unwanted links
+	 * in the plugin row meta.
 	 *
 	 * @since 1.0.1
 	 * @access protected
@@ -221,17 +221,16 @@ class Polygon_Tweaks_Admin {
 
 
 	/**
-	 * Get unwanted keyword exclusions.
+	 * Get keyword exclusions.
 	 *
-	 * Get the list of keywords that should not be removed even if they contain
-	 * keywords in the list of unwanted keywords.
-	 * This list should contain longer keywords than those in the unwanted list.
+	 * Get the list of keywords that will be used to detect false-positives in the
+	 * process of finding unwanted links in the plugin row meta.
 	 *
 	 * @since 1.0.1
 	 * @access protected
 	 * @return array Array with case-insensitive unwanted keyword exclusions.
 	 */
-	protected function get_unwanted_keyword_exclusions() {
+	protected function get_keyword_exclusions() {
 		$exclusions = array(
 			'View details',
 			'Check for updates',
@@ -251,7 +250,7 @@ class Polygon_Tweaks_Admin {
 	/**
 	 * Change plugin row meta.
 	 *
-	 * Remove unwanted links from plugin meta.
+	 * Remove unwanted links from plugin row meta.
 	 *
 	 * @since 1.0.1
 	 * @param  array  $plugin_meta Array with plugin metadata, including the version, author, author URI, and plugin URI.
@@ -262,7 +261,7 @@ class Polygon_Tweaks_Admin {
 	 */
 	public function change_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 		$unwanted_keywords = $this->get_unwanted_keywords();
-		$exclusions        = $this->get_unwanted_keyword_exclusions();
+		$exclusions        = $this->get_keyword_exclusions();
 		$language          = get_user_locale();
 
 
