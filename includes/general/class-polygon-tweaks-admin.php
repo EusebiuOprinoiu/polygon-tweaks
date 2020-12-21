@@ -250,7 +250,8 @@ class Polygon_Tweaks_Admin {
 	/**
 	 * Change plugin row meta.
 	 *
-	 * Remove unwanted links from plugin row meta.
+	 * Find and remove unwanted links in the plugin row meta.
+	 * It ignores our own plugins and websites/users who don't use the en_US locale.
 	 *
 	 * @since 1.0.1
 	 * @param  array  $plugin_meta Array with plugin metadata, including the version, author, author URI, and plugin URI.
