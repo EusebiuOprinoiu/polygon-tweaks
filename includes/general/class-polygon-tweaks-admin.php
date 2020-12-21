@@ -263,7 +263,7 @@ class Polygon_Tweaks_Admin {
 	public function change_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 		$unwanted_keywords = $this->get_unwanted_keywords();
 		$exclusions        = $this->get_unwanted_keyword_exclusions();
-		$language          = get_locale();
+		$language          = get_user_locale();
 
 
 
