@@ -202,7 +202,7 @@ class Polygon_Tweaks_Admin {
 			'Leave a review',
 			'Write a review',
 			'Rate this plugin',
-			'<span class="dashicons>',
+			'<span class="dashicons',
 			'.jpeg',
 			'.jpg',
 			'.png',
