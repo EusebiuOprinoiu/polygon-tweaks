@@ -267,6 +267,26 @@ class Polygon_Tweaks_Admin {
 
 
 
+		// phpcs:disable
+		/*
+		// Remove Github Updater icons for own plugins. Keep all other custom links.
+		if ( strpos( $plugin_meta[1], 'Eusebiu Oprinoiu' ) || strpos( $plugin_meta[1], 'Polygon Themes' ) ) {
+			// phpcs:disable
+			if ( strpos( $plugin_meta[ count( $plugin_meta ) - 1 ], 'github-updater/assets/bitbucket-logo.svg' ) ||
+				 strpos( $plugin_meta[ count( $plugin_meta ) - 1 ], 'github-updater/assets/github-logo.svg' ) ||
+				 strpos( $plugin_meta[ count( $plugin_meta ) - 1 ], 'github-updater/assets/gitlab-logo.svg' ) ||
+				 strpos( $plugin_meta[ count( $plugin_meta ) - 1 ], 'github-updater/assets/gitea-logo.svg' ) ) {
+					// unset( $plugin_meta[ count( $plugin_meta ) - 1 ] );
+			}
+			// phpcs:enable
+
+			return $plugin_meta;
+		}
+		*/
+		// phpcs:enable
+
+
+
 		// Don't remove links for own plugins.
 		if ( strpos( $plugin_meta[1], 'Eusebiu Oprinoiu' ) || strpos( $plugin_meta[1], 'Polygon Themes' ) ) {
 			return $plugin_meta;
