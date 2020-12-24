@@ -1,3 +1,7 @@
+#### Version 1.0.3
+- New image sizes for improved adaptive images
+- Change srcset size limit from default value to 3840px
+
 #### Version 1.0.2
 - Better detection for useless links in plugin meta
 

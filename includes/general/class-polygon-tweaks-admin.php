@@ -28,9 +28,11 @@ class Polygon_Tweaks_Admin {
 	 * @since 1.0.0
 	 */
 	public function add_image_sizes() {
+		add_image_size( 'polygon-320', 320, 0, false );      // Responsive Size at 320px.
 		add_image_size( 'polygon-640', 640, 0, false );      // Responsive Size at 640px.
 		add_image_size( 'polygon-960', 960, 0, false );      // Responsive Size at 960px.
 		add_image_size( 'polygon-1280', 1280, 0, false );    // Responsive Size at 1280px.
+		add_image_size( 'polygon-1600', 1600, 0, false );    // Responsive Size at 1600px.
 		add_image_size( 'polygon-1920', 1920, 0, false );    // Responsive Size at 1920px.
 		add_image_size( 'polygon-2560', 2560, 0, false );    // Responsive Size at 2560px.
 	}
@@ -76,6 +78,26 @@ class Polygon_Tweaks_Admin {
 	 * @return int            New threshold for big images.
 	 */
 	public function change_big_image_threshold( $threshold ) {
+		return 3840;
+	}
+
+
+
+
+
+	/**
+	 * Change srcset size limit.
+	 *
+	 * By default, WordPress has a limit of 1600px for the images included in the srcset
+	 * attribute. This function changes that value based on the image size removing the limit
+	 * for large image sizes and lowering it for smaller image sizes.
+	 *
+	 * @since  1.0.0
+	 * @param  int   $max_width  Maximum width accepted in the srcset attribute.
+	 * @param  array $size_array Array with the width and height of the current image.
+	 * @return int               The new maximum width accepted in the srcset attribute.
+	 */
+	public function change_srcset_size_limit( $max_width, $size_array ) {
 		return 3840;
 	}
 
