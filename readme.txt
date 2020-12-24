@@ -43,6 +43,9 @@ No questions added yet! :
 
 ## Changelog
 
+#### Version 1.0.4
+- Disabled the generation of a small thumbnail
+
 #### Version 1.0.3
 - New image sizes for improved adaptive images
 - Change srcset size limit from default value to 3840px

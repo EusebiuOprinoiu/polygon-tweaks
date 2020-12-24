@@ -28,7 +28,6 @@ class Polygon_Tweaks_Admin {
 	 * @since 1.0.0
 	 */
 	public function add_image_sizes() {
-		add_image_size( 'polygon-320', 320, 0, false );      // Responsive Size at 320px.
 		add_image_size( 'polygon-640', 640, 0, false );      // Responsive Size at 640px.
 		add_image_size( 'polygon-960', 960, 0, false );      // Responsive Size at 960px.
 		add_image_size( 'polygon-1280', 1280, 0, false );    // Responsive Size at 1280px.
