@@ -1,0 +1,8 @@
+/* Hide revisions icon */
+#editor .interface-interface-skeleton__sidebar .components-panel .edit-post-last-revision__panel svg {
+	display: none !important;
+}
+
+svg.components-external-link__icon {
+	display: none !important;
+}

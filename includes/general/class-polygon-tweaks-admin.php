@@ -21,6 +21,23 @@
 class Polygon_Tweaks_Admin {
 
 	/**
+	 * Register and enqueue stylesheets for the admin area.
+	 *
+	 * @since 1.0.5
+	 * @param string $hook Hook name for the current admin page.
+	 */
+	public function enqueue_styles( $hook ) {
+		if ( $hook === 'post.php' || $hook === 'post-new.php' ) {
+			wp_register_style( 'polygon-tweaks-editor', plugins_url( 'assets/stylesheets/polygon-tweaks-editor.css', POLYGON_TWEAKS_MAIN_FILE ), false, POLYGON_TWEAKS_VERSION, 'all' );
+			wp_enqueue_style( 'polygon-tweaks-editor' );
+		}
+	}
+
+
+
+
+
+	/**
 	 * Add image sizes.
 	 *
 	 * Add new image sizes for better adaptive images.

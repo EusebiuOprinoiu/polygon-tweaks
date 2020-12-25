@@ -89,6 +89,7 @@ class Polygon_Tweaks {
 		$updates = new Polygon_Tweaks_Updates();
 
 		// Register admin hooks.
+		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
 		add_action( 'after_setup_theme', array( $admin, 'add_image_sizes' ) );
 		add_action( 'intermediate_image_sizes', array( $admin, 'remove_image_sizes' ), 999 );
 		add_filter( 'big_image_size_threshold', array( $admin, 'change_big_image_threshold' ), 999 );

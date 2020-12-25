@@ -1,3 +1,6 @@
+#### Version 1.0.5
+- Load a stylesheet in the WordPress editor with minor tweaks for the UI
+
 #### Version 1.0.4
 - Disabled the generation of a small thumbnail
 
