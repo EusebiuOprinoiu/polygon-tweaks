@@ -1,3 +1,6 @@
+#### Version 1.0.6
+- Use a filter hook to remove image sizes, not an action
+
 #### Version 1.0.5
 - Load a stylesheet in the WordPress editor with minor tweaks for the UI
 

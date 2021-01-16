@@ -91,7 +91,7 @@ class Polygon_Tweaks {
 		// Register admin hooks.
 		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
 		add_action( 'after_setup_theme', array( $admin, 'add_image_sizes' ) );
-		add_action( 'intermediate_image_sizes', array( $admin, 'remove_image_sizes' ), 999 );
+		add_filter( 'intermediate_image_sizes', array( $admin, 'remove_image_sizes' ), 999 );
 		add_filter( 'big_image_size_threshold', array( $admin, 'change_big_image_threshold' ), 999 );
 		add_filter( 'max_srcset_image_width', array( $admin, 'change_srcset_size_limit' ), 999, 2 );
 		add_filter( 'wp_editor_set_quality', array( $admin, 'change_image_quality' ) );
