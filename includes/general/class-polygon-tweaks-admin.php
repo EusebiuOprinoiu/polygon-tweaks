@@ -38,108 +38,6 @@ class Polygon_Tweaks_Admin {
 
 
 	/**
-	 * Add image sizes.
-	 *
-	 * Add new image sizes for better adaptive images.
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_image_sizes() {
-		add_image_size( 'polygon-640', 640, 0, false );      // Responsive Size at 640px.
-		add_image_size( 'polygon-960', 960, 0, false );      // Responsive Size at 960px.
-		add_image_size( 'polygon-1280', 1280, 0, false );    // Responsive Size at 1280px.
-		add_image_size( 'polygon-1600', 1600, 0, false );    // Responsive Size at 1600px.
-		add_image_size( 'polygon-1920', 1920, 0, false );    // Responsive Size at 1920px.
-		add_image_size( 'polygon-2560', 2560, 0, false );    // Responsive Size at 2560px.
-	}
-
-
-
-
-
-	/**
-	 * Remove image sizes.
-	 *
-	 * Remove useless image sizes created by WordPress or other plugins.
-	 *
-	 * @since 1.0.0
-	 * @param  array $sizes Array with image sizes.
-	 * @return array        New available image sizes.
-	 */
-	public function remove_image_sizes( $sizes ) {
-		foreach ( $sizes as $key => $name ) {
-			if ( in_array( $name, array( 'medium_large', '1536x1536', '2048x2048' ), true ) ) {
-				unset( $sizes[ $key ] );
-			}
-		}
-
-		// Make consecutive keys.
-		$sizes = array_values( $sizes );
-
-		return $sizes;
-	}
-
-
-
-
-
-	/**
-	 * Change big image threshold.
-	 *
-	 * Change threshold value for big images.
-	 * Default WordPress value is 2560px.
-	 *
-	 * @since 1.0.0
-	 * @param  int $threshold Old threshold for big images.
-	 * @return int            New threshold for big images.
-	 */
-	public function change_big_image_threshold( $threshold ) {
-		return 3840;
-	}
-
-
-
-
-
-	/**
-	 * Change srcset size limit.
-	 *
-	 * By default, WordPress has a limit of 1600px for the images included in the srcset
-	 * attribute. This function changes that value based on the image size removing the limit
-	 * for large image sizes and lowering it for smaller image sizes.
-	 *
-	 * @since  1.0.0
-	 * @param  int   $max_width  Maximum width accepted in the srcset attribute.
-	 * @param  array $size_array Array with the width and height of the current image.
-	 * @return int               The new maximum width accepted in the srcset attribute.
-	 */
-	public function change_srcset_size_limit( $max_width, $size_array ) {
-		return 3840;
-	}
-
-
-
-
-
-	/**
-	 * Change image quality.
-	 *
-	 * Set image quality for resized images to 100% to prevent
-	 * double compression with plugins like ShortPixel or Imagify.
-	 *
-	 * @since 1.0.0
-	 * @param  int $quality Old image quality.
-	 * @return int          New image quality.
-	 */
-	public function change_image_quality( $quality ) {
-		return 100;
-	}
-
-
-
-
-
-	/**
 	 * Change login logo.
 	 *
 	 * Use a custom logo on the login page.
@@ -370,5 +268,30 @@ class Polygon_Tweaks_Admin {
 
 
 		return $plugin_meta;
+	}
+
+
+
+
+
+	/**
+	 * Flush rewrite rules.
+	 *
+	 * If the 'flush-rewrite-rules' flag is set to 'flush', flush the rewrite rules and set
+	 * the flag back to 'no-flush'. The flag is set to 'flush' when the activation function
+	 * is triggered.
+	 *
+	 * @since 1.0.0
+	 */
+	public function flush_rewrite_rules() {
+		$polygon_tweaks = get_option( 'polygon_tweaks' );
+
+		if ( $polygon_tweaks['flush-rewrite-rules'] === 'flush' ) {
+			flush_rewrite_rules();
+
+			$polygon_tweaks['flush-rewrite-rules'] = 'no-flush';
+
+			update_option( 'polygon_tweaks', $polygon_tweaks );
+		}
 	}
 }

@@ -11,3 +11,8 @@
 
 
 // Migrate.
+$polygon_tweaks = get_option( 'polygon_tweaks' );
+
+$polygon_tweaks['flush-rewrite-rules'] = 'flush';
+
+update_option( 'polygon_tweaks', $polygon_tweaks );

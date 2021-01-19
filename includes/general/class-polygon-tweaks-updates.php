@@ -44,13 +44,13 @@ class Polygon_Tweaks_Updates {
 		}
 
 		if ( version_compare( POLYGON_TWEAKS_VERSION, $polygon_tweaks['version'] ) > 0 ) {
-			/* phpcs:ignore
 			// Migrate options to version 1.1.0.
 			if ( version_compare( $polygon_tweaks['db-version'], '1.1.0' ) < 0 ) {
 				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/general/updates/update-to-version-1.1.0.php';
 				$polygon_tweaks['db-version'] = '1.1.0';
 			}
 
+			/* phpcs:ignore
 			// Migrate options to version 1.2.0.
 			if ( version_compare( $polygon_tweaks['db-version'], '1.2.0' ) < 0 ) {
 				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/general/updates/update-to-version-1.2.0.php';

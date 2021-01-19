@@ -69,11 +69,22 @@ class Polygon_Tweaks_Activator {
 		// Create plugin options if not available.
 		if ( ! get_option( 'polygon_tweaks' ) ) {
 			$polygon_tweaks = array(
-				'version'    => POLYGON_TWEAKS_VERSION,
-				'db-version' => POLYGON_TWEAKS_VERSION,
+				'version'             => POLYGON_TWEAKS_VERSION,
+				'db-version'          => POLYGON_TWEAKS_VERSION,
+				'flush-rewrite-rules' => null,
 			);
 
 			add_option( 'polygon_tweaks', $polygon_tweaks );
 		}
+
+
+		// Get option values.
+		$polygon_tweaks = get_option( 'polygon_tweaks' );
+
+		// Set option values on every plugin activation.
+		$polygon_tweaks['flush-rewrite-rules'] = 'flush';
+
+		// Update option values.
+		update_option( 'polygon_tweaks', $polygon_tweaks );
 	}
 }
