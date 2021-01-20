@@ -249,9 +249,8 @@ class Polygon_Tweaks_Media {
 	/**
 	 * Add attachment slug prefix.
 	 *
-	 * This is a trimmed down version of 'wp_unique_post_slug' that is used to generate
-	 * unique slugs for attachment pages. It adds a prefix to all new attachment slugs
-	 * making sure important slugs are available for posts and pages.
+	 * Add a prefix to all new attachment slugs making sure important slugs
+	 * are available for posts and pages.
 	 *
 	 * The prefix can be changed via the 'polygon_attachment_slug_prefix' filter.
 	 *
@@ -269,16 +268,8 @@ class Polygon_Tweaks_Media {
 	 */
 	public function add_attachment_slug_prefix( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
 		if ( $post_ID === 0 ) {
-			global $wpdb;
-			global $wp_rewrite;
-
-
-			if ( $post_type === 'nav_menu_item' ) {
-				return $slug;
-			}
-
 			if ( $post_type === 'attachment' ) {
-				$prefix = apply_filters( 'polygon_attachment_slug_prefix', 'media-', $original_slug, $post_ID, $post_status, $post_type, $post_parent );
+				$prefix = apply_filters( 'polygon_attachment_slug_prefix', 'media-' );
 
 				if ( ! $prefix ) {
 					return $slug;
@@ -288,41 +279,7 @@ class Polygon_Tweaks_Media {
 				remove_filter( 'wp_unique_post_slug', array( $this, 'add_attachment_slug_prefix' ), 10 );
 				$slug = wp_unique_post_slug( $prefix . $original_slug, $post_ID, $post_status, $post_type, $post_parent );
 				add_filter( 'wp_unique_post_slug', array( $this, 'add_attachment_slug_prefix' ), 10, 6 );
-
-				return $slug;
 			}
-
-			if ( ! is_post_type_hierarchical( $post_type ) ) {
-				return $slug;
-			}
-
-			$feeds = $wp_rewrite->feeds;
-			if ( ! is_array( $feeds ) ) {
-				$feeds = array();
-			}
-
-
-
-			// This is the big change. We are NOT checking attachments along with our post type.
-			// phpcs:disable
-			$slug            = $original_slug;
-			$check_sql       = "SELECT post_name FROM $wpdb->posts WHERE post_name = %s AND post_type IN ( %s ) AND ID != %d AND post_parent = %d LIMIT 1";
-			$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug, $post_type, $post_ID, $post_parent ) );
-
-			if ( $post_name_check
-				|| in_array( $slug, $feeds, true ) || $slug === 'embed'
-				|| preg_match( "@^($wp_rewrite->pagination_base)?\d+$@", $slug )
-				|| apply_filters( 'wp_unique_post_slug_is_bad_hierarchical_slug', false, $slug, $post_type, $post_parent )
-			) {
-				$suffix = 2;
-				do {
-					$alt_post_name   = _truncate_post_slug( $slug, 200 - ( strlen( $suffix ) + 1 ) ) . "-$suffix";
-					$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $alt_post_name, $post_type, $post_ID, $post_parent ) );
-					$suffix++;
-				} while ( $post_name_check );
-				$slug = $alt_post_name;
-			}
-			// phpcs:enable
 		}
 
 		return $slug;

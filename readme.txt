@@ -43,6 +43,9 @@ No questions added yet! :
 
 ## Changelog
 
+#### Version 1.1.1
+- Minor code refactoring
+
 #### Version 1.1.0
 - disable attachment pages and prevent them from reserving URL paths
 - replace all references to attachment pages with URLs to the attachment files

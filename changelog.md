@@ -1,8 +1,11 @@
+#### Version 1.1.1
+- Minor code refactoring
+
 #### Version 1.1.0
-- disable attachment pages and prevent them from reserving URL paths
-- replace all references to attachment pages with URLs to the attachment files
-- prefix all new attachment slugs to minimize potential name conflicts if the plugin is ever deactivated
-- redirect attachment pages to the attachment file (in case an attachment page is called via code)
+- Disable attachment pages and prevent them from reserving URL paths
+- Replace all references to attachment pages with URLs to the attachment files
+- Prefix all new attachment slugs to minimize potential name conflicts if the plugin is ever deactivated
+- Redirect attachment pages to the attachment file (in case an attachment page is called via code)
 
 #### Version 1.0.6
 - Use a filter hook to remove image sizes, not an action
