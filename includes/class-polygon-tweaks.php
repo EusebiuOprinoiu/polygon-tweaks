@@ -102,6 +102,7 @@ class Polygon_Tweaks {
 		// Register media hooks.
 		add_action( 'after_setup_theme', array( $media, 'add_image_sizes' ) );
 		add_filter( 'intermediate_image_sizes', array( $media, 'remove_image_sizes' ), 999 );
+		add_filter( 'shortpixel/settings/image_sizes', array( $media, 'remove_shortpixel_image_sizes' ), 999 );
 		add_filter( 'big_image_size_threshold', array( $media, 'change_big_image_threshold' ), 999 );
 		add_filter( 'max_srcset_image_width', array( $media, 'change_srcset_size_limit' ), 999, 2 );
 		add_filter( 'wp_editor_set_quality', array( $media, 'change_image_quality' ) );

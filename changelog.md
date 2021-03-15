@@ -1,3 +1,6 @@
+#### Version 1.1.2
+- Prevent ShortPixel from re-adding removed image sizes
+
 #### Version 1.1.1
 - Minor code refactoring
 
