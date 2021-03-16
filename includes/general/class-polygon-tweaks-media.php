@@ -142,15 +142,16 @@ class Polygon_Tweaks_Media {
 	/**
 	 * Change image quality.
 	 *
-	 * Set image quality for resized images to 100% to prevent
-	 * double compression with plugins like ShortPixel or Imagify.
+	 * Change the image quality for for new thumbnals.
+	 * Always use lossless compression when using third-party image optimizers
+	 * like ShortPixel or Imagify to prevnt double compressions.
 	 *
 	 * @since 1.0.0
 	 * @param  int $quality Old image quality.
 	 * @return int          New image quality.
 	 */
 	public function change_image_quality( $quality ) {
-		return 100;
+		return 85;
 	}
 
 
