@@ -151,7 +151,7 @@ class Polygon_Tweaks_Media {
 	 * @return int          New image quality.
 	 */
 	public function change_image_quality( $quality ) {
-		return 85;
+		return 100;
 	}
 
 

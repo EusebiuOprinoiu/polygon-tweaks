@@ -44,6 +44,9 @@ No questions added yet! :
 ## Changelog
 
 #### Version 1.1.3
+- Default JPEG quality set to 100 for new thumbnails
+
+#### Version 1.1.3
 - Default JPEG quality set to 85 for new thumbnails
 
 #### Version 1.1.2
