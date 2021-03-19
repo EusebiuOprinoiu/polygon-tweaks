@@ -43,7 +43,10 @@ No questions added yet! :
 
 ## Changelog
 
-#### Version 1.1.3
+#### Version 1.1.5
+- Removed ShortPixel tweaks
+
+#### Version 1.1.4
 - Default JPEG quality set to 100 for new thumbnails
 
 #### Version 1.1.3

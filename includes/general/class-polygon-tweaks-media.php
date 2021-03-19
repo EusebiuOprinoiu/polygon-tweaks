@@ -72,36 +72,6 @@ class Polygon_Tweaks_Media {
 
 
 	/**
-	 * Remove shortpixel image sizes.
-	 *
-	 * ShortPixel doesn't use the native WordPress function for building the list
-	 * of image sizes. We need a slighty modified function to filter the returned values.
-	 *
-	 * @since 1.0.0
-	 * @param  array $sizes Array with image sizes.
-	 * @return array        New available image sizes.
-	 */
-	public function remove_shortpixel_image_sizes( $sizes ) {
-		$unwanted_sizes = array(
-			'medium_large',
-			'1536x1536',
-			'2048x2048',
-		);
-
-		foreach ( $sizes as $key => $value ) {
-			if ( in_array( $key, $unwanted_sizes, true ) ) {
-				unset( $sizes[ $key ] );
-			}
-		}
-
-		return $sizes;
-	}
-
-
-
-
-
-	/**
 	 * Change big image threshold.
 	 *
 	 * Change threshold value for big images.
