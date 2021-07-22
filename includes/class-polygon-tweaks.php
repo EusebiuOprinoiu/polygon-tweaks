@@ -114,7 +114,8 @@ class Polygon_Tweaks {
 		add_filter( 'wp_unique_post_slug', array( $media, 'add_attachment_slug_prefix' ), 10, 6 );
 
 		// Register other hooks.
-		add_filter( 'jetpack_just_in_time_msgs', '__return_false' );    // Disable Jetpack nags and upsells.
+		add_filter( 'jetpack_just_in_time_msgs', '__return_false', 20 );    // Disable Jetpack nags and upsells.
+		add_filter( 'jetpack_show_promotions', '__return_false', 20 );      // Disable Jetpack nags and upsells.
 
 		// Register db update hooks.
 		add_action( 'plugins_loaded', array( $updates, 'maybe_run_recursive_updates' ) );

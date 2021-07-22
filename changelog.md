@@ -1,3 +1,6 @@
+#### Version 1.1.6
+- Remove Jetpack and WooCommerce nags and upsells
+
 #### Version 1.1.5
 - Removed ShortPixel tweaks
 
