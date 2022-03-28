@@ -4,7 +4,7 @@ Contributors:      PolygonThemes, EusebiuOprinoiu
 Tags:              tweaks, media, login
 Stable tag:        trunk
 Requires PHP:      7.2
-Tested up to:      5.6
+Tested up to:      5.9
 Requires at least: 5.0
 License:           GPLv3 or later
 License URI:       https://choosealicense.com/licenses/gpl-3.0
@@ -39,9 +39,14 @@ The manual installation method involves downloading the plugin and uploading it 
 
 ## Frequently Asked Questions
 
-No questions added yet! :
+No questions yet!
 
 ## Changelog
+
+#### Version 1.2.0
+- Minor code refactoring
+- Show a plugin icon and banner while performing updates
+- Language files updated
 
 #### Version 1.1.6
 - Remove Jetpack and WooCommerce nags and upsells

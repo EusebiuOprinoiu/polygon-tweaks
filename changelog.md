@@ -1,3 +1,8 @@
+#### Version 1.2.0
+- Minor code refactoring
+- Show a plugin icon and banner while performing updates
+- Language files updated
+
 #### Version 1.1.6
 - Remove Jetpack and WooCommerce nags and upsells
 

@@ -6,6 +6,8 @@
  * @package Polygon_Tweaks
  */
 
+defined( 'ABSPATH' ) || exit;
+
 
 
 
@@ -18,6 +20,30 @@
  * @since 1.1.0
  */
 class Polygon_Tweaks_Media {
+
+	/**
+	 * Hook into actions and filters.
+	 *
+	 * @since 1.0.0
+	 */
+	public function init() {
+		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
+		add_filter( 'intermediate_image_sizes', array( $this, 'remove_image_sizes' ), 999 );
+		add_filter( 'big_image_size_threshold', array( $this, 'change_big_image_threshold' ), 999 );
+		add_filter( 'max_srcset_image_width', array( $this, 'change_srcset_size_limit' ), 999, 2 );
+		add_filter( 'wp_editor_set_quality', array( $this, 'change_image_quality' ) );
+		add_filter( 'jpeg_quality', array( $this, 'change_image_quality' ) );
+		add_filter( 'rewrite_rules_array', array( $this, 'remove_attachment_rewrites' ) );
+		add_filter( 'request', array( $this, 'remove_attachment_query_var' ) );
+		add_filter( 'attachment_link', array( $this, 'change_attachment_link_to_file' ), 10, 2 );
+		add_action( 'template_redirect', array( $this, 'redirect_attachment_page_to_file' ) );
+		add_filter( 'register_post_type_args', array( $this, 'make_attachments_private' ), 10, 2 );
+		add_filter( 'wp_unique_post_slug', array( $this, 'add_attachment_slug_prefix' ), 10, 6 );
+	}
+
+
+
+
 
 	/**
 	 * Add image sizes.

@@ -6,6 +6,8 @@
  * @package Polygon_Tweaks
  */
 
+defined( 'ABSPATH' ) || exit;
+
 
 
 
@@ -21,6 +23,30 @@
 class Polygon_Tweaks_Admin {
 
 	/**
+	 * Hook into actions and filters.
+	 *
+	 * @since 1.0.0
+	 */
+	public function init() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'login_head', array( $this, 'change_login_logo' ) );
+		add_filter( 'login_headerurl', array( $this, 'change_login_header_url' ) );
+		add_filter( 'login_headertext', array( $this, 'change_login_header_text' ) );
+		add_action( 'login_init', array( $this, 'force_login_redirect' ) );
+		add_action( 'plugin_row_meta', array( $this, 'change_plugin_row_meta' ), 999, 4 );
+		add_action( 'admin_init', array( $this, 'flush_rewrite_rules' ) );
+
+		// Register other hooks.
+		add_filter( 'gu_plugin_assets_dir', array( $this, 'git_updater_assets_dir' ) );
+		add_filter( 'jetpack_just_in_time_msgs', '__return_false', 20 );    // Disable Jetpack nags and upsells.
+		add_filter( 'jetpack_show_promotions', '__return_false', 20 );      // Disable Jetpack nags and upsells.
+	}
+
+
+
+
+
+	/**
 	 * Register and enqueue stylesheets for the admin area.
 	 *
 	 * @since 1.0.5
@@ -28,7 +54,7 @@ class Polygon_Tweaks_Admin {
 	 */
 	public function enqueue_styles( $hook ) {
 		if ( $hook === 'post.php' || $hook === 'post-new.php' ) {
-			wp_register_style( 'polygon-tweaks-editor', plugins_url( 'assets/stylesheets/polygon-tweaks-editor.css', POLYGON_TWEAKS_MAIN_FILE ), false, POLYGON_TWEAKS_VERSION, 'all' );
+			wp_register_style( 'polygon-tweaks-editor', plugins_url( 'assets/stylesheets/polygon-tweaks-editor.css', POLYGON_TWEAKS_FILE ), false, POLYGON_TWEAKS_VERSION, 'all' );
 			wp_enqueue_style( 'polygon-tweaks-editor' );
 		}
 	}
@@ -293,5 +319,21 @@ class Polygon_Tweaks_Admin {
 
 			update_option( 'polygon_tweaks', $polygon_tweaks );
 		}
+	}
+
+
+
+
+
+	/**
+	 * Set a custom assets directory for Git Updater.
+	 *
+	 * Specify a custom directory for the assets used by Git Updater during updates.
+	 * Use the same file names as for the WordPress repository. (icon, banner, etc)
+	 *
+	 * @since 2.3.0
+	 */
+	public function git_updater_assets_dir() {
+		return 'assets/images/updates';
 	}
 }

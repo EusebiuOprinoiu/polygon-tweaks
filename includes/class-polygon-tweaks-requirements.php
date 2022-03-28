@@ -6,6 +6,8 @@
  * @package Polygon_Tweaks
  */
 
+defined( 'ABSPATH' ) || exit;
+
 
 
 
@@ -21,36 +23,11 @@
 class Polygon_Tweaks_Requirements {
 
 	/**
-	 * Minimum required version of PHP.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    string
-	 */
-	protected $minimum_php_version;
-
-	/**
-	 * Minimum recommended version of PHP.
-	 *
-	 * @since  1.0.0
-	 * @access protected
-	 * @var    string
-	 */
-	protected $recommended_php_version;
-
-
-
-
-
-	/**
-	 * Get things started.
+	 * Hook into actions and filters.
 	 *
 	 * @since 1.0.0
 	 */
-	public function __construct() {
-		$this->minimum_php_version     = '7.2';
-		$this->recommended_php_version = '7.4';
-
+	public function init() {
 		if ( ! $this->check_php() ) {
 			add_action( 'network_admin_notices', array( $this, 'php_requirements_not_met' ) );
 			add_action( 'admin_notices', array( $this, 'php_requirements_not_met' ) );
@@ -91,7 +68,7 @@ class Polygon_Tweaks_Requirements {
 	 * @return bool
 	 */
 	public function check_php() {
-		return version_compare( PHP_VERSION, $this->minimum_php_version ) >= 0;
+		return version_compare( PHP_VERSION, POLYGON_TWEAKS_MIN_PHP_VERSION ) >= 0;
 	}
 
 
@@ -114,7 +91,7 @@ class Polygon_Tweaks_Requirements {
 
 			if ( $nonce && wp_verify_nonce( $nonce, 'disable-polygon-tweaks' ) ) {
 				if ( isset( $_GET['disable_polygon_tweaks'] ) && ( $_GET['disable_polygon_tweaks'] === 'true' ) ) {
-					deactivate_plugins( plugin_basename( POLYGON_TWEAKS_MAIN_FILE ) );
+					deactivate_plugins( plugin_basename( POLYGON_TWEAKS_FILE ) );
 
 					return; // Do not display the notice on page reload.
 				}
@@ -126,7 +103,7 @@ class Polygon_Tweaks_Requirements {
 			if (
 				! is_multisite() ||
 				( is_multisite() && is_super_admin() ) ||
-				( is_multisite() && ! is_super_admin() && ! is_plugin_active_for_network( plugin_basename( POLYGON_TWEAKS_MAIN_FILE ) ) ) ) {
+				( is_multisite() && ! is_super_admin() && ! is_plugin_active_for_network( plugin_basename( POLYGON_TWEAKS_FILE ) ) ) ) {
 					$disable_button = true;
 			} else {
 				$disable_button = false;
@@ -140,11 +117,11 @@ class Polygon_Tweaks_Requirements {
 					</p>
 					<p>
 						<?php // phpcs:ignore
-							printf( esc_html__( 'Polygon Tweaks will not run on PHP versions older than %1$s. You are running on version %2$s which has serious security and performance issues.', 'polygon-tweaks' ), $this->minimum_php_version, PHP_VERSION );
+							printf( esc_html__( 'Polygon Tweaks doesn\'t run on PHP versions older than %1$s. You are running on version %2$s which has serious security and performance issues.', 'polygon-tweaks' ), POLYGON_TWEAKS_MIN_PHP_VERSION, PHP_VERSION );
 						?>
 						<br>
 						<?php // phpcs:ignore
-							printf( esc_html__( 'Please ask your hosting provider to help you upgrade. We recommend PHP %1$s or newer.', 'polygon-tweaks' ), $this->recommended_php_version );
+							printf( esc_html__( 'Please ask your hosting provider to help you upgrade. We recommend PHP %1$s or newer.', 'polygon-tweaks' ), POLYGON_TWEAKS_REC_PHP_VERSION );
 						?>
 					</p>
 					<?php if ( $disable_button ) { ?>

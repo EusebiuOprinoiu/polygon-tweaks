@@ -6,6 +6,8 @@
  * @package Polygon_Tweaks
  */
 
+defined( 'ABSPATH' ) || exit;
+
 
 
 

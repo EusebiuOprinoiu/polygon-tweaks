@@ -6,6 +6,8 @@
  * @package Polygon_Tweaks
  */
 
+defined( 'ABSPATH' ) || exit;
+
 
 
 
@@ -19,6 +21,20 @@
  * @since 1.0.0
  */
 class Polygon_Tweaks_Updates {
+
+	/**
+	 * Hook into actions and filters.
+	 *
+	 * @since 1.0.0
+	 */
+	public function init() {
+		add_action( 'plugins_loaded', array( $this, 'maybe_run_recursive_updates' ) );
+		add_action( 'wpmu_new_blog', array( $this, 'maybe_run_activation_script' ), 10, 6 );
+	}
+
+
+
+
 
 	/**
 	 * Migrate and update options on plugin updates.
@@ -46,14 +62,14 @@ class Polygon_Tweaks_Updates {
 		if ( version_compare( POLYGON_TWEAKS_VERSION, $polygon_tweaks['version'] ) > 0 ) {
 			// Migrate options to version 1.1.0.
 			if ( version_compare( $polygon_tweaks['db-version'], '1.1.0' ) < 0 ) {
-				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/general/updates/update-to-version-1.1.0.php';
+				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/classes/updates/update-to-version-1.1.0.php';
 				$polygon_tweaks['db-version'] = '1.1.0';
 			}
 
 			/* phpcs:ignore
 			// Migrate options to version 1.2.0.
 			if ( version_compare( $polygon_tweaks['db-version'], '1.2.0' ) < 0 ) {
-				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/general/updates/update-to-version-1.2.0.php';
+				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/classes/updates/update-to-version-1.2.0.php';
 				$polygon_tweaks['db-version'] = '1.2.0';
 			}
 			*/
@@ -88,7 +104,7 @@ class Polygon_Tweaks_Updates {
 	 */
 	public function maybe_run_activation_script( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
 		if ( $blog_id ) {
-			if ( is_plugin_active_for_network( plugin_basename( POLYGON_TWEAKS_MAIN_FILE ) ) ) {
+			if ( is_plugin_active_for_network( plugin_basename( POLYGON_TWEAKS_FILE ) ) ) {
 				switch_to_blog( $blog_id );
 
 				require_once POLYGON_TWEAKS_DIR_PATH . 'includes/class-polygon-tweaks-activator.php';
