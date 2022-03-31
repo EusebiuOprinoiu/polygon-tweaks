@@ -103,4 +103,4 @@ function run_polygon_tweaks() {
 		$plugin->run();
 	}
 }
-run_polygon_tweaks();
+add_action( 'plugins_loaded', 'run_polygon_tweaks' );
