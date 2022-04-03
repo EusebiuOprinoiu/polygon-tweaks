@@ -1,5 +1,6 @@
 #### Version 1.2.1
 - Minor improvements to admin notices
+- New links to remove from plugin meta
 
 #### Version 1.2.0
 - Minor code refactoring

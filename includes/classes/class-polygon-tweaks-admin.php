@@ -152,6 +152,7 @@ class Polygon_Tweaks_Admin {
 			'Donate',
 			'Review',
 			'Support',
+			'Sponsor',
 			'Premium',
 			'Homepage',
 			'Changelog',
