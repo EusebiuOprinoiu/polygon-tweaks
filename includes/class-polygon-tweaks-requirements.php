@@ -126,7 +126,7 @@ class Polygon_Tweaks_Requirements {
 					</p>
 					<?php if ( $disable_button ) { ?>
 						<p>
-							<a href="<?php echo esc_url( wp_nonce_url( '?disable_polygon_tweaks=true', 'disable-polygon-tweaks' ) ); ?>">
+							<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'disable_polygon_tweaks', 'true' ), 'disable-polygon-tweaks' ) ); ?>">
 								<b><?php echo esc_html__( 'Disable Plugin', 'polygon-tweaks' ); ?></b>
 							</a>
 						</p>

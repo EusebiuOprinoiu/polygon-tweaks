@@ -43,6 +43,9 @@ No questions yet!
 
 ## Changelog
 
+#### Version 1.2.1
+- Minor improvements to admin notices
+
 #### Version 1.2.0
 - Minor code refactoring
 - Show a plugin icon and banner while performing updates
