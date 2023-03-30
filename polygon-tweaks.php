@@ -7,7 +7,7 @@
  * Description:       A simple plugin with tweaks and fixes for a better experience on your WordPress website.
  * Version:           1.2.1
  * Requires PHP:      7.2
- * Requires at least: 5.0
+ * Requires at least: 5.6
  *
  * Text Domain:       polygon-tweaks
  * Domain Path:       /languages/
