@@ -80,8 +80,6 @@ register_deactivation_hook( POLYGON_TWEAKS_FILE, 'deactivate_polygon_tweaks' );
 
 
 
-
-
 /**
  * Load and execute if all requirements are met.
  *
