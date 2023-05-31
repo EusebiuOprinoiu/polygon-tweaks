@@ -33,6 +33,7 @@ class Polygon_Tweaks_Admin {
 		add_filter( 'login_headerurl', array( $this, 'change_login_header_url' ) );
 		add_filter( 'login_headertext', array( $this, 'change_login_header_text' ) );
 		add_action( 'login_init', array( $this, 'force_login_redirect' ) );
+		add_action( 'admin_email_check_interval', array( $this, 'change_admin_email_check_interval' ) );
 		add_action( 'plugin_row_meta', array( $this, 'change_plugin_row_meta' ), 999, 4 );
 		add_action( 'admin_init', array( $this, 'flush_rewrite_rules' ) );
 
@@ -129,6 +130,28 @@ class Polygon_Tweaks_Admin {
 				exit;
 			}
 		}
+	}
+
+
+
+
+
+	/**
+	 * Change admin email check interval.
+	 *
+	 * Change the admin email check interval if it has a value of 6 months. (default WP value)
+	 * Leave unchanged if a different value is detected.
+	 *
+	 * @since 1.0.0
+	 * @param  int $interval Interval time in seconds.
+	 * @return int           New check interval.
+	 */
+	public function change_admin_email_check_interval( $interval ) {
+		if ( $interval === 6 * MONTH_IN_SECONDS ) {
+			$interval = 2 * YEAR_IN_SECONDS;
+		}
+
+		return interval;
 	}
 
 

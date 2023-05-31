@@ -1,3 +1,6 @@
+#### Version 1.2.2
+- Increase the admin email check interval from 6 months to 2 years
+
 #### Version 1.2.1
 - Minor improvements to admin notices
 - New links to remove from plugin meta

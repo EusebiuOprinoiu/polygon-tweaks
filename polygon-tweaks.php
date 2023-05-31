@@ -5,7 +5,7 @@
  * Author:            Polygon Themes
  * Author URI:        https://polygonthemes.com
  * Description:       A simple plugin with tweaks and fixes for a better experience on your WordPress website.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Requires PHP:      7.2
  * Requires at least: 5.6
  *
@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 
-define( 'POLYGON_TWEAKS_VERSION', '1.2.1' );
+define( 'POLYGON_TWEAKS_VERSION', '1.2.2' );
 define( 'POLYGON_TWEAKS_SLUG', 'polygon-tweaks' );
 
 define( 'POLYGON_TWEAKS_FILE', __FILE__ );

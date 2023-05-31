@@ -21,3 +21,5 @@ For best results, use the following sizes under Settings > Media:
 ## Other Tweaks
 
 - disable Jetpack and WooCommerce nags and upsells
+- remove upsells and useless links from the plugin meta
+- increase the admin email check interval from 6 months to 2 years
