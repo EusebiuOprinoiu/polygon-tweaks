@@ -151,7 +151,7 @@ class Polygon_Tweaks_Admin {
 			$interval = 2 * YEAR_IN_SECONDS;
 		}
 
-		return interval;
+		return $interval;
 	}
 
 
