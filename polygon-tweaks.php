@@ -6,8 +6,8 @@
  * Author URI:        https://polygonthemes.com
  * Description:       A simple plugin with tweaks and fixes for a better experience on your WordPress website.
  * Version:           1.2.2
- * Requires PHP:      7.2
- * Requires at least: 5.6
+ * Requires PHP:      7.4
+ * Requires at least: 5.8
  *
  * Text Domain:       polygon-tweaks
  * Domain Path:       /languages/
@@ -41,7 +41,7 @@ define( 'POLYGON_TWEAKS_FILE', __FILE__ );
 define( 'POLYGON_TWEAKS_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'POLYGON_TWEAKS_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
-define( 'POLYGON_TWEAKS_MIN_PHP_VERSION', '7.2' );
+define( 'POLYGON_TWEAKS_MIN_PHP_VERSION', '7.4' );
 define( 'POLYGON_TWEAKS_REC_PHP_VERSION', '8.0' );
 
 
