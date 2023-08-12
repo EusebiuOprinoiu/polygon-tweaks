@@ -43,6 +43,10 @@ No questions yet!
 
 ## Changelog
 
+#### Unreleased
+- Minimum required version of PHP set to 7.4
+- Minimum required version of WP set to 5.8
+
 #### Version 1.2.2
 - Increase the admin email check interval from 6 months to 2 years
 
