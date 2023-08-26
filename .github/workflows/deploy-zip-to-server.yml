@@ -1,0 +1,35 @@
+name: Deploy ZIP to Server
+on:
+  release:
+    types: [published]
+env:
+  ssh_private_key_name: github-actions-private.key
+  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+  ssh_known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+  ssh_config: ${{ secrets.SSH_CONFIG }}
+  username: ${{ secrets.AUTH_USERNAME }}
+  server: ${{ secrets.AUTH_SERVER }}
+  path: ${{ secrets.REMOTE_PATH }}
+  slug: polygon-tweaks
+jobs:
+  deploy-zip-to-server:
+    name: Deploy ZIP to Server
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ env.ssh_private_key }}
+        name: ${{ env.ssh_private_key_name }}
+        config: ${{ env.ssh_config }}
+        known_hosts: ${{ env.ssh_known_hosts }}
+        if_key_exists: replace
+    - name: Create ZIP archive
+      run: |
+        mkdir .github/archives
+        git archive --output=.github/archives/${{ env.slug }}.zip --prefix=${{ env.slug }}/ --worktree-attributes --verbose HEAD
+    - name: Deploy ZIP archive to server
+      run: |
+        rsync -azv .github/archives/${{ env.slug }}.zip ${{ env.username }}@${{ env.server }}:${{ env.path }}
