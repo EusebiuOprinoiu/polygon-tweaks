@@ -7,9 +7,9 @@ env:
   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
   ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
   ssh-config: ${{ secrets.SSH_CONFIG }}
-  username: ${{ secrets.AUTH_USERNAME }}
-  server: ${{ secrets.AUTH_SERVER }}
-  path: ${{ secrets.REMOTE_PATH }}
+  user: ${{ secrets.AUTH_USER }}
+  host: ${{ secrets.AUTH_HOST }}
+  path: ${{ secrets.AUTH_PATH }}
   slug: polygon-tweaks
 jobs:
   deploy-zip-to-server:
@@ -25,11 +25,10 @@ jobs:
         name: ${{ env.ssh-private-key-name }}
         config: ${{ env.ssh-config }}
         known_hosts: ${{ env.ssh-known-hosts }}
-        if_key_exists: replace
     - name: Create ZIP archive
       run: |
         mkdir -p .github/archives
         git archive --output=.github/archives/${{ env.slug }}.zip --prefix=${{ env.slug }}/ --worktree-attributes --verbose HEAD
     - name: Deploy ZIP archive to server
       run: |
-        rsync -azv --chmod=664 .github/archives/${{ env.slug }}.zip ${{ env.username }}@${{ env.server }}:${{ env.path }}
+        rsync -azv --chmod=664 .github/archives/${{ env.slug }}.zip ${{ env.user }}@${{ env.host }}:${{ env.path }}
