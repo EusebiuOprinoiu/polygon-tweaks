@@ -1,6 +1,10 @@
 #### Unreleased
+- Nothing yet
+
+#### Version 1.2.3
 - Minimum required version of PHP set to 7.4
 - Minimum required version of WP set to 5.8
+- New srcset image sizes
 
 #### Version 1.2.2
 - Increase the admin email check interval from 6 months to 2 years
