@@ -62,9 +62,17 @@ class Polygon_Tweaks_Media {
 		$large_width      = get_option( 'large_size_w' );
 		$large_height     = get_option( 'large_size_h' );
 
-		add_image_size( 'thumbnail-2x', $thumbnail_width * 2, $thumbnail_height * 2, $thumbnail_crop );    // Thumbnail size on high DPI screens.
-		add_image_size( 'medium-2x', $medium_width * 2, $medium_height * 2, false );                       // Medium size on high DPI screens.
-		add_image_size( 'large-2x', $large_width * 2, $large_height * 2, false );                          // Large size on high DPI screens.
+		if ( $thumbnail_width || $thumbnail_height ) {
+			add_image_size( 'thumbnail-2x', $thumbnail_width * 2, $thumbnail_height * 2, $thumbnail_crop );    // Thumbnail size on high DPI screens.
+		}
+
+		if ( $medium_width || $medium_height ) {
+			add_image_size( 'medium-2x', $medium_width * 2, $medium_height * 2, false );    // Medium size on high DPI screens.
+		}
+
+		if ( $large_width || $large_height ) {
+			add_image_size( 'large-2x', $large_width * 2, $large_height * 2, false );    // Large size on high DPI screens.
+		}
 		*/
 
 		add_image_size( 'polygon-640', 640, 0, false );      // Responsive Size at 640px.
