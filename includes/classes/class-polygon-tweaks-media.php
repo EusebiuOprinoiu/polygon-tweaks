@@ -79,13 +79,11 @@ class Polygon_Tweaks_Media {
 		*/
 
 		add_image_size( 'polygon-640', 640, 0, false );      // Responsive Size at 640px.
-		add_image_size( 'polygon-800', 800, 0, false );      // Responsive Size at 800px.
 		add_image_size( 'polygon-960', 960, 0, false );      // Responsive Size at 960px.
 		add_image_size( 'polygon-1280', 1280, 0, false );    // Responsive Size at 1280px.
 		add_image_size( 'polygon-1600', 1600, 0, false );    // Responsive Size at 1600px.
 		add_image_size( 'polygon-1920', 1920, 0, false );    // Responsive Size at 1920px.
 		add_image_size( 'polygon-2560', 2560, 0, false );    // Responsive Size at 2560px.
-		add_image_size( 'polygon-3200', 3200, 0, false );    // Responsive Size at 3200px.
 	}
 
 
