@@ -1,4 +1,4 @@
-#### Version 1.2.3
+#### Unreleased
 - Minimum required version of PHP set to 7.4
 - Minimum required version of WP set to 5.8
 
